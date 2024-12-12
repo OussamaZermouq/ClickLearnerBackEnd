@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ClickLearnerBackEnd.iml" filepath="$PROJECT_DIR$/ClickLearnerBackEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-users/ms-users.iml" filepath="$PROJECT_DIR$/ms-users/ms-users.iml" />
     </modules>
   </component>
 </project>
