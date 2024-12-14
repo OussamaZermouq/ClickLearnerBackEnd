@@ -1,9 +1,6 @@
 package com.clicklearner.ms_devoir.model;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue(value="QCM")
-public class ChoixMultiple extends Devoir{
+public class MultipleChoiceQuestion extends Question{
     private String question;
-    @OneToMany
-    private List<Choix> choixList;
     @OneToOne
-    private Reponse reponse;
+    private Choix correctAnswer;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Choix> choixList;
 }

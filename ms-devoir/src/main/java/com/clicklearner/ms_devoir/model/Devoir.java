@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Devoir {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,4 +21,7 @@ public class Devoir {
     private String title;
     private LocalDate deadline;
     private int coursId;
+    private int profId;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Question> questions;
 }

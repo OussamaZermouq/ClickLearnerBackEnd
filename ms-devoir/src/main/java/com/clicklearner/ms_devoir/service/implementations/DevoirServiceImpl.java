@@ -1,19 +1,22 @@
-package com.clicklearner.ms_devoir.service;
+package com.clicklearner.ms_devoir.service.implementations;
 
 import com.clicklearner.ms_devoir.model.Devoir;
 import com.clicklearner.ms_devoir.repository.DevoirRepository;
+import com.clicklearner.ms_devoir.service.interfaces.IDevoirService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class DevoirService implements IDevoirService{
+@Service
+public class DevoirServiceImpl implements IDevoirService {
     @Autowired
     public DevoirRepository devoirRepository;
 
     @Override
-    public void addDevoir(Devoir devoir, int courseId) {
-
+    public void addDevoir(Devoir devoir) {
+        devoirRepository.save(devoir);
     }
 
     @Override
@@ -42,5 +45,13 @@ public class DevoirService implements IDevoirService{
     @Override
     public List<Devoir> getDevoirForCourse(int courseId) {
         return null;
+    }
+
+    @Override
+    public void deleteDevoir(int devoirId) {
+        Optional<Devoir> devoir = devoirRepository.findById(devoirId);
+        if (devoir.isPresent()){
+            devoirRepository.delete(devoir.get());
+        }
     }
 }

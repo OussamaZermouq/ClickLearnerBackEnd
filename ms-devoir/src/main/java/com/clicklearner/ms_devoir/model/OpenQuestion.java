@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ouvert extends Devoir{
+public class OpenQuestion extends Question{
     private String title;
     private String question;
 }

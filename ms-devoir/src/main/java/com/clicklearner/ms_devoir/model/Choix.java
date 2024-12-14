@@ -15,6 +15,7 @@ public class Choix {
     private int choixId;
     private String choix;
 
-    @ManyToOne
-    private ChoixMultiple question;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id")
+    private MultipleChoiceQuestion question;
 }

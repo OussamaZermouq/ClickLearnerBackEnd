@@ -1,4 +1,4 @@
-package com.clicklearner.ms_devoir.service;
+package com.clicklearner.ms_devoir.service.interfaces;
 
 
 import com.clicklearner.ms_devoir.model.Devoir;
@@ -8,9 +8,10 @@ import java.util.List;
 
 @Service
 public interface IDevoirService {
-    public void addDevoir(Devoir devoir, int courseId);
+    public void addDevoir(Devoir devoir);
     public void updateDevoir(Devoir devoir, int devoirId);
     public Devoir getDevoirById(int devoirId);
     public List<Devoir> getAllDevoirs();
     public List<Devoir> getDevoirForCourse(int courseId);
+    public void deleteDevoir(int devoirId);
 }
