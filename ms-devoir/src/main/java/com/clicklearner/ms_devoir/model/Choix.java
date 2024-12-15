@@ -1,12 +1,15 @@
 package com.clicklearner.ms_devoir.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Choix {
@@ -17,5 +20,6 @@ public class Choix {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id")
+    @JsonIgnore
     private MultipleChoiceQuestion question;
 }

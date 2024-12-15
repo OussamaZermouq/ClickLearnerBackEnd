@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @DiscriminatorValue("QCM")
 public class MultipleChoiceResponse extends UserResponse {

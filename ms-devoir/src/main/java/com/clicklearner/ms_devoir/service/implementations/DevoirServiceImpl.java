@@ -1,6 +1,10 @@
 package com.clicklearner.ms_devoir.service.implementations;
 
+import com.clicklearner.ms_devoir.model.Choix;
 import com.clicklearner.ms_devoir.model.Devoir;
+import com.clicklearner.ms_devoir.model.MultipleChoiceQuestion;
+import com.clicklearner.ms_devoir.model.Question;
+import com.clicklearner.ms_devoir.openfeign.UserServiceClient;
 import com.clicklearner.ms_devoir.repository.DevoirRepository;
 import com.clicklearner.ms_devoir.service.interfaces.IDevoirService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +18,30 @@ public class DevoirServiceImpl implements IDevoirService {
     @Autowired
     public DevoirRepository devoirRepository;
 
+    @Autowired
+    public UserServiceClient userServiceClient;
+
     @Override
     public void addDevoir(Devoir devoir) {
+        if (devoir.getQuestions() != null) {
+            for (Question question : devoir.getQuestions()) {
+                question.setDevoir(devoir);
+                if (question instanceof MultipleChoiceQuestion) {
+                    MultipleChoiceQuestion mcq = (MultipleChoiceQuestion) question;
+                    if (mcq.getChoixList() != null) {
+                        for (Choix choix : mcq.getChoixList()) {
+                            choix.setQuestion(mcq);
+                        }
+                    }
+                    if (mcq.getCorrectAnswer() != null) {
+                        mcq.getCorrectAnswer().setQuestion(mcq);
+                    }
+                }
+            }
+        }
         devoirRepository.save(devoir);
     }
+
 
     @Override
     public void updateDevoir(Devoir devoir, int devoirId) {
