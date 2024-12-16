@@ -1,6 +1,8 @@
 package com.clicklearner.ms_cours.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,14 +19,18 @@ public class Cours {
     private String profId;
 
     @ManyToOne
+    @JsonBackReference
     private Matier matier;
 
     @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Chapitre> chapitres;
 
     @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Document> documents;
 
     @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Video> videos;
 }

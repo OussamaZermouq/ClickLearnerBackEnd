@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ClickLearnerBackEnd.iml" filepath="$PROJECT_DIR$/.idea/ClickLearnerBackEnd.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ms-cours/ms-cours.iml" filepath="$PROJECT_DIR$/ms-cours/ms-cours.iml" />
     </modules>
   </component>
 </project>

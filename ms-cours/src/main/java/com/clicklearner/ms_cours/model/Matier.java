@@ -1,5 +1,6 @@
 package com.clicklearner.ms_cours.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,5 +15,6 @@ public class Matier {
     private String nomMatier;
 
     @OneToMany(mappedBy = "matier", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Cours> cours;
 }

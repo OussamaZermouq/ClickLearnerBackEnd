@@ -1,6 +1,7 @@
 package com.clicklearner.ms_cours.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ public class Chapitre {
     private int numChapitre;
 
     @ManyToOne
+    @JsonBackReference
     private Cours cours;
 
 }
