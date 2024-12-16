@@ -13,6 +13,6 @@ public class Matier {
     private Long matierId;
     private String nomMatier;
 
-    @OneToMany(mappedBy = "matiere", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "matier", cascade = CascadeType.ALL)
     private List<Cours> cours;
 }
