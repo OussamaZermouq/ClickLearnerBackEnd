@@ -14,9 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DevoirDTO {
+    private int devoirId;
     private String title;
     private LocalDate deadline;
     private int coursId;
-    private UserDto userDto;
+    private UserDto prof;
     private List<Question> questions;
 }

@@ -3,8 +3,12 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/ClicklearnerGateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ClicklearnerGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EurekaServer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms-devoir/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms-devoir/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-resultat/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-resultat/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms-users/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ms-users/src/main/resources" charset="UTF-8" />
   </component>

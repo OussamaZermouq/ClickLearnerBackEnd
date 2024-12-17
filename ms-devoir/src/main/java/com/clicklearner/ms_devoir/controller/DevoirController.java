@@ -27,9 +27,9 @@ public class DevoirController {
     @GetMapping("/{devoirId}")
     @ResponseBody
     public ResponseEntity<?> getDevoirById(@PathVariable int devoirId){
-        Devoir devoir = devoirService.getDevoirById(devoirId);
+        DevoirDTO devoir = devoirService.getDevoirById(devoirId);
         if (devoir!=null){
-            return ResponseEntity.ok().body(convertToDto(devoirService.getDevoirById(devoirId)));
+            return ResponseEntity.ok().body(devoirService.getDevoirById(devoirId));
         }
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.NOT_FOUND, "Devoir not found with id "+String.valueOf(devoirId)));
 

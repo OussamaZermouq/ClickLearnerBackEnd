@@ -20,7 +20,6 @@ public class QuestionServiceImpl implements IQuestionService {
     @Override
     public void updateQuetion(Question question, int questionId) {
         questionRepository.save(question);
-
     }
 
     @Override

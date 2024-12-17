@@ -1,5 +1,7 @@
 package com.clicklearner.ms_devoir.service.implementations;
 
+import com.clicklearner.ms_devoir.DTO.DevoirDTO;
+import com.clicklearner.ms_devoir.DTO.UserDto;
 import com.clicklearner.ms_devoir.model.Choix;
 import com.clicklearner.ms_devoir.model.Devoir;
 import com.clicklearner.ms_devoir.model.MultipleChoiceQuestion;
@@ -52,10 +54,20 @@ public class DevoirServiceImpl implements IDevoirService {
     }
 
     @Override
-    public Devoir getDevoirById(int devoirId) {
+    public DevoirDTO getDevoirById(int devoirId) {
         Optional<Devoir> devoir = devoirRepository.findById(devoirId);
+
         if(devoir.isPresent()){
-            return devoir.get();
+            Optional<UserDto> userDto = userServiceClient.getUserById(devoir.get().getProfId());
+            return DevoirDTO.builder().
+                    devoirId(devoirId).
+                    title(devoir.get().getTitle()).
+                    deadline(devoir.get().getDeadline()).
+                    coursId(devoir.get().getCoursId()).
+                    userDto(userDto.get()).
+                    questions(devoir.get().getQuestions()).
+                    build();
+
         }
         return null;
     }
