@@ -16,6 +16,6 @@ public class Video {
 
     @ManyToOne
     @JsonBackReference
-    private Cours cours;
+    private Chapitre chapitres;
 
 }

@@ -26,11 +26,4 @@ public class Cours {
     @JsonManagedReference
     private List<Chapitre> chapitres;
 
-    @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Document> documents;
-
-    @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Video> videos;
 }

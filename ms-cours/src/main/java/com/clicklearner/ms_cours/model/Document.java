@@ -16,5 +16,5 @@ public class Document {
 
     @ManyToOne
     @JsonBackReference
-    private Cours cours;
+    private Chapitre chapitres;
 }
