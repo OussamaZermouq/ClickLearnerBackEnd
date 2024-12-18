@@ -15,6 +15,7 @@ public class MatierController {
 
     @Autowired
     MatierServiceImpt matierService;
+
     @GetMapping("/matiers")
     public List<Matier> getAllMatiers(){
         return matierService.getAllMatiers();
