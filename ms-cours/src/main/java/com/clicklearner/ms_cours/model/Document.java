@@ -12,7 +12,8 @@ public class Document {
 
     private Long documentId;
     private String nomDocument;
-    private String urlDocument;
+    @Lob
+    private byte[] urlDocument;
 
     @ManyToOne
     @JsonBackReference

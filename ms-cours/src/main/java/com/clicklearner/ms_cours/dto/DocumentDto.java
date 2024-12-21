@@ -9,6 +9,6 @@ public class DocumentDto {
 
     //private Long documentId;
     private String nomDocument;
-    private String urlDocument;
+    private byte[] urlDocument;
     private Long chapitreId;
 }
