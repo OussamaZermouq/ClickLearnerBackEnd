@@ -68,7 +68,7 @@ public class DocumentController {
     }
 
     // Route pour mettre à jour un document
-    @PutMapping("/{id}")
+    @PutMapping("/documents/update/{id}")
     public ResponseEntity<String> updateDocument(@PathVariable Long id,
                                                  @RequestParam("nomDocument") String nomDocument,
                                                  @RequestParam("file") MultipartFile file,
@@ -85,7 +85,7 @@ public class DocumentController {
     }
 
     // Route pour supprimer un document
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/documents/delete/{id}")
     public ResponseEntity<String> deleteDocument(@PathVariable Long id) {
         try {
             documentService.deleteDocument(id);
