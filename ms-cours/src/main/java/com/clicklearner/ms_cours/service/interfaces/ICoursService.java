@@ -9,4 +9,7 @@ public interface ICoursService {
 
     public Cours getCourById(Long coursId);
     List<Cours> getAllcours();
+    Cours addCour(Cours cours);
+    Cours updateCour(Long coursId, Cours cours);
+    void deleteCour(Long coursId);
 }

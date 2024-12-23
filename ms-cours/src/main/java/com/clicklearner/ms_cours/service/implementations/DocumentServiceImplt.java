@@ -23,40 +23,37 @@ public class DocumentServiceImplt implements IDocumentService {
     @Override
     public Document getDocumentById(Long documentId) {
         Optional<Document> document = documentRepository.findById(documentId);
-        return document.orElse(null);  // Retourne le document s'il existe, sinon null
+        return document.orElse(null);
     }
 
     @Override
     public List<Document> getAllDocuments() {
-        return documentRepository.findAll();  // Récupère tous les documents
+        return documentRepository.findAll();
     }
 
     @Override
     public Document saveDocument(String nomDocument, byte[] urlDocument, Long chapitreId) {
-        // Valider l'existence du chapitre dans la base de données
+
         Chapitre chapitre = chapitreRepository.findById(chapitreId)
                 .orElseThrow(() -> new RuntimeException("Chapitre not found with ID: " + chapitreId));  // Lancer une exception si le chapitre n'existe pas
 
-        // Créer un nouvel objet Document
         Document document = Document.builder()
                 .nomDocument(nomDocument)
                 .urlDocument(urlDocument)
-                .chapitres(chapitre)  // Associer le chapitre trouvé
+                .chapitres(chapitre)
                 .build();
 
-        // Sauvegarder le document dans la base de données
         Document savedDocument = documentRepository.save(document);
 
-        return savedDocument;  // Retourner le document enregistré avec l'ID généré
+        return savedDocument;
     }
 
     @Override
     public byte[] getDocumentContentById(Long documentId) {
         Document document = documentRepository.findById(documentId).orElse(null);
-        return (document != null) ? document.getUrlDocument() : null;  // Retourne le contenu du document ou null si pas trouvé
+        return (document != null) ? document.getUrlDocument() : null;
     }
 
-    // Méthode de mise à jour d'un document
     @Override
     public Document updateDocument(Long documentId, String nomDocument, byte[] urlDocument, Long chapitreId) {
         Document existingDocument = documentRepository.findById(documentId)
@@ -65,7 +62,6 @@ public class DocumentServiceImplt implements IDocumentService {
         Chapitre chapitre = chapitreRepository.findById(chapitreId)
                 .orElseThrow(() -> new RuntimeException("Chapitre not found with ID: " + chapitreId));
 
-        // Mettre à jour les informations du document
         existingDocument.setNomDocument(nomDocument);
         existingDocument.setUrlDocument(urlDocument);
         existingDocument.setChapitres(chapitre);
@@ -73,7 +69,6 @@ public class DocumentServiceImplt implements IDocumentService {
         return documentRepository.save(existingDocument);
     }
 
-    // Méthode de suppression d'un document
     @Override
     public void deleteDocument(Long documentId) {
         Document document = documentRepository.findById(documentId)

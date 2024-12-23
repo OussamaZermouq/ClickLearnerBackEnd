@@ -20,7 +20,7 @@ public class VideoServiceImpt implements IVideoService {
     private VideoRepository videoRepository;
 
     @Autowired
-    private ChapitreRepository chapitreRepository; // Injection du repository Chapitre
+    private ChapitreRepository chapitreRepository;
 
     private static final String VIDEO_BASE_PATH = "C:/Users/Admin/Desktop/URL_Java/videos/";
 
@@ -41,7 +41,6 @@ public class VideoServiceImpt implements IVideoService {
 
     @Override
     public Video addVideo(Video video) {
-        // Vérification si le chapitre existe
         if (video.getChapitres() != null && chapitreExists(video.getChapitres().getChapitreId())) {
             return videoRepository.save(video);
         } else {

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatierRepository extends JpaRepository<Matier,Long> {
+    boolean existsByNomMatier(String nomMatier);
 }

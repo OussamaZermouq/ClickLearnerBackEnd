@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
-@RequestMapping("/videos")
 public class VideoController {
 
     @Autowired
@@ -22,30 +21,22 @@ public class VideoController {
 
     private static final String VIDEO_BASE_PATH = "C:/Users/Admin/Desktop/URL_Java/videos/";
 
-    /**
-     * Récupère toutes les vidéos.
-     */
-    @GetMapping
+    @GetMapping("/videos")
     public List<Video> videoList() {
         List<Video> videos = videoService.getAllVideos();
         videos.forEach(video -> video.setUrlVideo(VIDEO_BASE_PATH + video.getUrlVideo()));
         return videos;
     }
 
-    /**
-     * Récupère une vidéo par son ID.
-     */
-    @GetMapping("/{id}")
+    @GetMapping("/videos/{id}")
     public Video videoById(@PathVariable Long id) {
         return videoService.getVideoById(id);
     }
 
-    /**
-     * Ajoute une nouvelle vidéo.
-     */
-    @PostMapping
+
+    @PostMapping("/videos/upload")
     public ResponseEntity<String> addVideo(@RequestBody Video video) {
-        // Vérification de l'existence du chapitre et des informations nécessaires
+
         if (videoService.isVideoValid(video.getUrlVideo()) && video.getChapitres() != null
                 && video.getChapitres().getChapitreId() != null) {
             if (videoService.chapitreExists(video.getChapitres().getChapitreId())) {
@@ -59,10 +50,8 @@ public class VideoController {
         }
     }
 
-    /**
-     * Met à jour une vidéo existante.
-     */
-    @PutMapping("/{id}")
+
+    @PutMapping("/videos/update/{id}")
     public ResponseEntity<String> updateVideo(@PathVariable Long id, @RequestBody Video updatedVideo) {
         Video video = videoService.updateVideo(id, updatedVideo);
         if (video != null) {
@@ -72,19 +61,15 @@ public class VideoController {
         }
     }
 
-    /**
-     * Supprime une vidéo par son ID.
-     */
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/videos/delete/{id}")
     public ResponseEntity<String> deleteVideo(@PathVariable Long id) {
         videoService.deleteVideo(id);
         return ResponseEntity.ok("Vidéo supprimée avec succès !");
     }
 
-    /**
-     * Lit une vidéo depuis son chemin local.
-     */
-    @GetMapping("/play/{id}")
+
+    @GetMapping("/videos/play/{id}")
     public ResponseEntity<Resource> playVideo(@PathVariable Long id) {
         Video video = videoService.getVideoById(id);
 
@@ -93,7 +78,6 @@ public class VideoController {
         }
 
         try {
-            // Construire le chemin absolu vers le fichier vidéo
             Path filePath = Paths.get(VIDEO_BASE_PATH + video.getUrlVideo());
             Resource resource = new UrlResource(filePath.toUri());
 

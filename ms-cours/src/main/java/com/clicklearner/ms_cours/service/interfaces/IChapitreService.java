@@ -9,4 +9,7 @@ public interface IChapitreService {
 
     public Chapitre getChapitreById(Long chapitreId);
     List<Chapitre> getAllChapitres();
+    Chapitre addChapitre(Chapitre chapitre);
+    Chapitre updateChapitre(Long chapitreId, Chapitre updatedChapitre);
+    void deleteChapitre(Long chapitreId);
 }
