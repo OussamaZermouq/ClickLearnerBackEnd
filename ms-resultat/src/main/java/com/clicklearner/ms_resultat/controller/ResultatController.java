@@ -1,9 +1,12 @@
-package com.clicklearner.ms_resultat;
+package com.clicklearner.ms_resultat.controller;
 
 
+import com.clicklearner.ms_resultat.Dto.CalculateGradeRequestDto;
+import com.clicklearner.ms_resultat.Dto.DevoirResultsDto;
 import com.clicklearner.ms_resultat.Dto.GetResultatByStudentIdAndByDevoirIdDto;
 import com.clicklearner.ms_resultat.Dto.ResponseDto;
 import com.clicklearner.ms_resultat.model.Resultat;
+import com.clicklearner.ms_resultat.model.ResultatDevoir;
 import com.clicklearner.ms_resultat.service.implementations.ResultatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +33,11 @@ public class ResultatController {
     public ResponseEntity<ResponseDto> ajouterResultat(@RequestBody Resultat resultat){
         resultatService.ajouterResultat(resultat);
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "Result has been added"));
-
     }
 
     @GetMapping("/resultatbydevoirid/{devoirId}")
     public ResponseEntity<?> getResultatsByDevoirId(@PathVariable int devoirId){
-        List<Resultat> resultats = resultatService.getResultatsByDevoirId(devoirId);
+        List<ResultatDevoir> resultats = resultatService.getResultatsByDevoirId(devoirId);
         if (resultats.isEmpty()){
             return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NOT_FOUND, "Cant find results for this devoirID"));
 
@@ -51,6 +53,19 @@ public class ResultatController {
 
         }
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NOT_FOUND, "Cant find results for this devoirID and student Id"));
+    }
 
+
+    //switched to requestparam since requestbody won't work
+    @GetMapping("/submitresult")
+    public ResponseEntity<?> submitGrade(
+            @RequestParam int userId,
+            @RequestParam int devoirId
+    ){
+        DevoirResultsDto devoirResultsDto = resultatService.calculateGradeForDevoir(devoirId, userId);
+        if (devoirResultsDto!=null){
+            return ResponseEntity.ok().body(devoirResultsDto);
+        }
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NOT_FOUND, "Couldn't find user submission"));
     }
 }

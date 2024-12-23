@@ -64,7 +64,7 @@ public class DevoirServiceImpl implements IDevoirService {
                     title(devoir.get().getTitle()).
                     deadline(devoir.get().getDeadline()).
                     coursId(devoir.get().getCoursId()).
-                    userDto(userDto.get()).
+                    prof(userDto.get()).
                     questions(devoir.get().getQuestions()).
                     build();
 

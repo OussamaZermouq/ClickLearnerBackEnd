@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -16,11 +17,9 @@ import java.time.LocalDateTime;
 public class UserResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int reponseId;
-
+    private int responseId;
     @ManyToOne
     private Question question;
-
     private int userId;
-    private LocalDateTime submittedAt;
+    private Date submittedAt;
 }

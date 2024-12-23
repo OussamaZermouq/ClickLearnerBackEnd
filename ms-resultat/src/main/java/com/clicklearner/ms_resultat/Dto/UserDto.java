@@ -1,4 +1,4 @@
-package com.clicklearner.ms_devoir.DTO;
+package com.clicklearner.ms_resultat.Dto;
 
 import lombok.Data;
 

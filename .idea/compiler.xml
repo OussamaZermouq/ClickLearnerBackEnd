@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
+        <module name="ms-examen" />
         <module name="ms-users" />
         <module name="ms-devoir" />
         <module name="ClicklearnerGateway" />
