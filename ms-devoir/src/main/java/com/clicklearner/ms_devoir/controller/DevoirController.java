@@ -31,7 +31,7 @@ public class DevoirController {
         if (devoir!=null){
             return ResponseEntity.ok().body(devoirService.getDevoirById(devoirId));
         }
-        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.NOT_FOUND, "Devoir not found with id "+String.valueOf(devoirId)));
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.NOT_FOUND, "Devoir not found with id "+ devoirId));
 
     }
 
@@ -51,6 +51,25 @@ public class DevoirController {
     public ResponseEntity<ResponseDTO> deleteDevoir(@PathVariable int devoirId){
         devoirService.deleteDevoir(devoirId);
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "Devoir deleted successfully"));
+    }
+
+    @GetMapping("/cours/{coursId}")
+    public ResponseEntity<?> getDevoirByCoursId(@PathVariable int coursId){
+        List<Devoir> devoirs = devoirService.getDevoirbyCoursId(coursId);
+        if (devoirs!=null){
+            return ResponseEntity.ok().body(devoirs);
+        }
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "No devoir has been found for this cours"));
+    }
+
+    @GetMapping("/student/{userId}")
+    public ResponseEntity<?> getAllDevoirForStudent(@PathVariable int userId){
+        List<Devoir> devoirsForStudent = devoirService.getAllDevoirsForStudent(userId);
+        if (devoirsForStudent!=null){
+            return ResponseEntity.ok().body(devoirsForStudent);
+        }
+        return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "No devoirs have been found for this student"));
+
     }
 
     private DevoirDTO convertToDto(Devoir devoir){

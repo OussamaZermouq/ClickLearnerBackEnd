@@ -1,11 +1,11 @@
-package com.clicklearner.ms_devoir.model;
+package com.clicklearner.ms_examen.ms_examen.model.userresponse;
 
+import com.clicklearner.ms_examen.ms_examen.model.question.Question;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data

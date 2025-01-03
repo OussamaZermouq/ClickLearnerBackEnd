@@ -3,8 +3,7 @@ package com.clicklearner.ms_devoir.controller;
 
 import com.clicklearner.ms_devoir.DTO.GradeSubmitionMutipleChoiceRequestDto;
 import com.clicklearner.ms_devoir.DTO.ResponseDTO;
-import com.clicklearner.ms_devoir.DTO.UserResponseByDevoirRequest;
-import com.clicklearner.ms_devoir.model.UserResponse;
+import com.clicklearner.ms_devoir.model.userresponse.UserResponse;
 import com.clicklearner.ms_devoir.service.implementations.UserResponseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

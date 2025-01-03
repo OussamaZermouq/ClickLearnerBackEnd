@@ -1,6 +1,6 @@
 package com.clicklearner.ms_devoir.repository;
 
-import com.clicklearner.ms_devoir.model.UserResponse;
+import com.clicklearner.ms_devoir.model.userresponse.UserResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,12 +1,10 @@
 package com.clicklearner.ms_devoir.service.implementations;
 
-import com.clicklearner.ms_devoir.model.Question;
+import com.clicklearner.ms_devoir.model.question.Question;
 import com.clicklearner.ms_devoir.repository.QuestionRepository;
 import com.clicklearner.ms_devoir.service.interfaces.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 public class QuestionServiceImpl implements IQuestionService {

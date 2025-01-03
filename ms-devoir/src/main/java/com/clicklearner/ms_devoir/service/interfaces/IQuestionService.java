@@ -1,7 +1,7 @@
 package com.clicklearner.ms_devoir.service.interfaces;
 
 
-import com.clicklearner.ms_devoir.model.Question;
+import com.clicklearner.ms_devoir.model.question.Question;
 import org.springframework.stereotype.Service;
 
 

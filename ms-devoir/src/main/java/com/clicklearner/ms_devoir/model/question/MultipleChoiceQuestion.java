@@ -1,4 +1,4 @@
-package com.clicklearner.ms_devoir.model;
+package com.clicklearner.ms_devoir.model.question;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

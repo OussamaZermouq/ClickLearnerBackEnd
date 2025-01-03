@@ -1,6 +1,6 @@
 package com.clicklearner.ms_devoir.DTO;
 
-import com.clicklearner.ms_devoir.model.Question;
+import com.clicklearner.ms_devoir.model.question.Question;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

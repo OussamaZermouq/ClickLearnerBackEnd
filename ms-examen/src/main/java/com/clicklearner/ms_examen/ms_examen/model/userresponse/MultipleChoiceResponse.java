@@ -1,11 +1,13 @@
-package com.clicklearner.ms_devoir.model;
+package com.clicklearner.ms_examen.ms_examen.model.userresponse;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import com.clicklearner.ms_examen.ms_examen.model.question.Choix;
+import com.clicklearner.ms_examen.ms_examen.model.question.Question;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -18,10 +20,6 @@ public class MultipleChoiceResponse extends UserResponse {
 
     public MultipleChoiceResponse(int responseId, Question question, int userId, Date submittedAt, Choix selectedChoice) {
         super(responseId, question, userId, submittedAt);
-        this.selectedChoice = selectedChoice;
-    }
-
-    public MultipleChoiceResponse(Choix selectedChoice) {
         this.selectedChoice = selectedChoice;
     }
 }

@@ -2,10 +2,10 @@ package com.clicklearner.ms_devoir.service.implementations;
 
 import com.clicklearner.ms_devoir.DTO.DevoirDTO;
 import com.clicklearner.ms_devoir.DTO.UserDto;
-import com.clicklearner.ms_devoir.model.Choix;
+import com.clicklearner.ms_devoir.model.question.Choix;
 import com.clicklearner.ms_devoir.model.Devoir;
-import com.clicklearner.ms_devoir.model.MultipleChoiceQuestion;
-import com.clicklearner.ms_devoir.model.Question;
+import com.clicklearner.ms_devoir.model.question.MultipleChoiceQuestion;
+import com.clicklearner.ms_devoir.model.question.Question;
 import com.clicklearner.ms_devoir.openfeign.UserServiceClient;
 import com.clicklearner.ms_devoir.repository.DevoirRepository;
 import com.clicklearner.ms_devoir.service.interfaces.IDevoirService;
@@ -48,7 +48,7 @@ public class DevoirServiceImpl implements IDevoirService {
     @Override
     public void updateDevoir(Devoir devoir, int devoirId) {
         Optional<Devoir> devoirToUpdate = devoirRepository.findById(devoirId);
-        if (devoirToUpdate.isPresent()){
+        if (devoirToUpdate.isPresent()) {
             devoirRepository.save(devoirToUpdate.get());
         }
     }
@@ -57,7 +57,7 @@ public class DevoirServiceImpl implements IDevoirService {
     public DevoirDTO getDevoirById(int devoirId) {
         Optional<Devoir> devoir = devoirRepository.findById(devoirId);
 
-        if(devoir.isPresent()){
+        if (devoir.isPresent()) {
             Optional<UserDto> userDto = userServiceClient.getUserById(devoir.get().getProfId());
             return DevoirDTO.builder().
                     devoirId(devoirId).
@@ -86,8 +86,27 @@ public class DevoirServiceImpl implements IDevoirService {
     @Override
     public void deleteDevoir(int devoirId) {
         Optional<Devoir> devoir = devoirRepository.findById(devoirId);
-        if (devoir.isPresent()){
+        if (devoir.isPresent()) {
             devoirRepository.delete(devoir.get());
         }
+    }
+
+    @Override
+    public List<Devoir> getDevoirbyCoursId(int coursId) {
+        List<Devoir> devoirsForCoursId = devoirRepository.getDevoirByCoursId(coursId);
+        if (devoirsForCoursId != null) {
+            return devoirsForCoursId;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Devoir> getAllDevoirsForStudent(int userId) {
+        /*TODO:in this function we need the cours microservice
+        so that we can check all the cours that
+        the user is subscribed to and then get all
+        the devoirs that are in this cours and
+        have not been completed by the user*/
+        return null;
     }
 }

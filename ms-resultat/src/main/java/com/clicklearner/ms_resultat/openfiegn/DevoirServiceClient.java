@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "ms-devoir", url = "http://localhost:8086/api/v1/")
+@FeignClient(name = "ms-devoir", url="http://localhost:8086/api/v1/")
 public interface DevoirServiceClient {
     @GetMapping("devoir/{devoirId}")
     Optional<DevoirDto> getDevoirById(@PathVariable("devoirId") int devoirId);

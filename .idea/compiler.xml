@@ -21,6 +21,7 @@
       <module name="ClicklearnerGateway" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="ms-devoir" options="-parameters" />
+      <module name="ms-examen" options="-parameters" />
       <module name="ms-resultat" options="-parameters" />
       <module name="ms-users" options="-parameters" />
     </option>

@@ -1,4 +1,4 @@
-package com.clicklearner.ms_devoir.model;
+package com.clicklearner.ms_examen.ms_examen.model.userresponse;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @DiscriminatorValue("OVT")
-public class OpenResponse extends UserResponse {
+public class OpenQuestionResponse extends UserResponse {
     @Column(length = 1000)
     private String textResponse;
 }

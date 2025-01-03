@@ -15,4 +15,8 @@ public interface IDevoirService {
     public List<Devoir> getAllDevoirs();
     public List<Devoir> getDevoirForCourse(int courseId);
     public void deleteDevoir(int devoirId);
+
+    public List<Devoir> getDevoirbyCoursId(int coursId);
+
+    List<Devoir> getAllDevoirsForStudent(int  userId);
 }

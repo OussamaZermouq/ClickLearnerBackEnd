@@ -1,8 +1,10 @@
 package com.clicklearner.ms_devoir.service.implementations;
 
 import com.clicklearner.ms_devoir.DTO.GradeSubmitionMutipleChoiceRequestDto;
-import com.clicklearner.ms_devoir.DTO.UserResponseByDevoirRequest;
-import com.clicklearner.ms_devoir.model.*;
+import com.clicklearner.ms_devoir.model.question.Choix;
+import com.clicklearner.ms_devoir.model.question.Question;
+import com.clicklearner.ms_devoir.model.userresponse.MultipleChoiceResponse;
+import com.clicklearner.ms_devoir.model.userresponse.UserResponse;
 import com.clicklearner.ms_devoir.repository.ChoixRepository;
 import com.clicklearner.ms_devoir.repository.QuestionRepository;
 import com.clicklearner.ms_devoir.repository.UserResponseRepository;
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

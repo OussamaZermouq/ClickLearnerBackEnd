@@ -1,9 +1,7 @@
 package com.clicklearner.ms_devoir.service.interfaces;
 
-import com.clicklearner.ms_devoir.model.Choix;
+import com.clicklearner.ms_devoir.model.question.Choix;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface IChoixService {

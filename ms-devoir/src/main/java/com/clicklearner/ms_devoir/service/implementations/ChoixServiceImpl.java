@@ -1,12 +1,11 @@
 package com.clicklearner.ms_devoir.service.implementations;
 
-import com.clicklearner.ms_devoir.model.Choix;
+import com.clicklearner.ms_devoir.model.question.Choix;
 import com.clicklearner.ms_devoir.repository.ChoixRepository;
 import com.clicklearner.ms_devoir.service.interfaces.IChoixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

@@ -1,4 +1,4 @@
-package com.clicklearner.ms_devoir.model;
+package com.clicklearner.ms_examen.ms_examen.model.question;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
