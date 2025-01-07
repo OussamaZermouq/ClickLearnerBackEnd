@@ -10,24 +10,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ms-cours/api/v1/chapitre")
 public class ChapitreController {
     @Autowired
     ChapitreServiceImpt chapitreService;
 
 
-    @GetMapping("/chapitres")
+    @GetMapping("/")
     public List<Chapitre> chapitreList(){
         return chapitreService.getAllChapitres();
     }
 
-    @GetMapping("/chapitres/{id}")
+    @GetMapping("/{id}")
     public Chapitre chapitreById(@PathVariable Long id){
         Chapitre chapitre = chapitreService.getChapitreById(id);
 
         return chapitre;
     }
 
-    @PostMapping("/chapitres/upload")
+    @PostMapping("/upload")
     public ResponseEntity<String> addChapitre(@RequestBody Chapitre chapitre) {
         try {
             chapitreService.addChapitre(chapitre);
@@ -37,7 +38,7 @@ public class ChapitreController {
         }
     }
 
-    @PutMapping("/chapitres/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<String> updateChapitre(@PathVariable Long id, @RequestBody Chapitre updatedChapitre) {
         try {
             chapitreService.updateChapitre(id, updatedChapitre);
@@ -47,7 +48,7 @@ public class ChapitreController {
         }
     }
 
-    @DeleteMapping("/chapitres/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteChapitre(@PathVariable Long id) {
         chapitreService.deleteChapitre(id);
         return ResponseEntity.ok("Chapitre supprimé avec succès !");

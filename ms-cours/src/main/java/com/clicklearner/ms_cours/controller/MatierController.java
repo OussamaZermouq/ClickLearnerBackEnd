@@ -8,38 +8,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ms-cours/api/v1/matiere")
 public class MatierController {
 
     @Autowired
     MatierServiceImpt matierService;
 
-    @GetMapping("/matiers")
+    @GetMapping("/")
     public List<Matier> getAllMatiers(){
         return matierService.getAllMatiers();
     }
 
-    @GetMapping("/matiers/{id}")
+    @GetMapping("/{id}")
     public Matier matierById(@PathVariable Long id){
         Matier matier = matierService.getMatierById(id);
 
         return matier;
     }
 
-    @PostMapping("/matiers/upload")
+    @PostMapping("/create")
     public Matier addMatier(@RequestBody Matier matier) {
         return matierService.addMatier(matier);
     }
 
-    @PutMapping("/matiers/update/{id}")
+    @PutMapping("/update/{id}")
     public Matier updateMatier(@PathVariable Long id, @RequestBody Matier matier) {
         return matierService.updateMatier(id, matier);
     }
 
-    @DeleteMapping("/matiers/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteMatier(@PathVariable Long id) {
         matierService.deleteMatier(id);
         return "Matière supprimée avec succès.";
     }
-
 
 }

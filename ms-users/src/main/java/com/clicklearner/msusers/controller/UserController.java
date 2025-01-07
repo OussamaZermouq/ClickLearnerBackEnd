@@ -1,5 +1,6 @@
 package com.clicklearner.msusers.controller;
 
+import com.clicklearner.msusers.Dto.LoginRequestDto;
 import com.clicklearner.msusers.Dto.UserDto;
 import com.clicklearner.msusers.model.User;
 import com.clicklearner.msusers.service.UserServiceImpl;
@@ -9,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("ms-users/api/v1/user")
 public class UserController {
     @Autowired
     public UserServiceImpl userService;
@@ -19,6 +20,12 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable int userId){
         return ResponseEntity.ok().body(convertToDto(userService.getUserById(userId)));
+    }
+
+    //just for testing should be replaced with keycloak authentication
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto){
+        return ResponseEntity.ok().body(userService.login(loginRequestDto.getEmail(), loginRequestDto.getPassword()));
     }
 
     @PostMapping("/createuser")

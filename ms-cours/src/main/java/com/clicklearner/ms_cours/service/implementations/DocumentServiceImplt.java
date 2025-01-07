@@ -20,6 +20,7 @@ public class DocumentServiceImplt implements IDocumentService {
     @Autowired
     private ChapitreRepository chapitreRepository;
 
+
     @Override
     public Document getDocumentById(Long documentId) {
         Optional<Document> document = documentRepository.findById(documentId);
@@ -32,41 +33,17 @@ public class DocumentServiceImplt implements IDocumentService {
     }
 
     @Override
-    public Document saveDocument(String nomDocument, byte[] urlDocument, Long chapitreId) {
-
-        Chapitre chapitre = chapitreRepository.findById(chapitreId)
-                .orElseThrow(() -> new RuntimeException("Chapitre not found with ID: " + chapitreId));  // Lancer une exception si le chapitre n'existe pas
-
-        Document document = Document.builder()
-                .nomDocument(nomDocument)
-                .urlDocument(urlDocument)
-                .chapitres(chapitre)
-                .build();
-
-        Document savedDocument = documentRepository.save(document);
-
-        return savedDocument;
+    public void saveDocument(Document document) {
+        documentRepository.save(document);
     }
 
-    @Override
-    public byte[] getDocumentContentById(Long documentId) {
-        Document document = documentRepository.findById(documentId).orElse(null);
-        return (document != null) ? document.getUrlDocument() : null;
-    }
+
 
     @Override
-    public Document updateDocument(Long documentId, String nomDocument, byte[] urlDocument, Long chapitreId) {
-        Document existingDocument = documentRepository.findById(documentId)
-                .orElseThrow(() -> new RuntimeException("Document not found with ID: " + documentId));
-
-        Chapitre chapitre = chapitreRepository.findById(chapitreId)
-                .orElseThrow(() -> new RuntimeException("Chapitre not found with ID: " + chapitreId));
-
-        existingDocument.setNomDocument(nomDocument);
-        existingDocument.setUrlDocument(urlDocument);
-        existingDocument.setChapitres(chapitre);
-
-        return documentRepository.save(existingDocument);
+    public void updateDocument(Long documentId, Document document) {
+        if (documentRepository.findById(documentId)!=null){
+            documentRepository.save(document);
+        }
     }
 
     @Override

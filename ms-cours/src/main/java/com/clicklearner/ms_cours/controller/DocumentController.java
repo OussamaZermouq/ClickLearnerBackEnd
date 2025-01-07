@@ -1,5 +1,7 @@
 package com.clicklearner.ms_cours.controller;
 
+import com.clicklearner.ms_cours.dto.DocumentDto;
+import com.clicklearner.ms_cours.dto.ResponseDto;
 import com.clicklearner.ms_cours.model.Document;
 import com.clicklearner.ms_cours.service.implementations.DocumentServiceImplt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ms-cours/api/v1/document")
 public class DocumentController {
 
     @Autowired
@@ -17,65 +20,35 @@ public class DocumentController {
 
     //private static final String FILE_DIRECTORY = "C:/Users/Admin/Desktop/URL_Java/documments";
 
-    @GetMapping("/documents")
+    @GetMapping("/")
     public List<Document> getAllDocuments() {
         return documentService.getAllDocuments();
     }
 
-    @GetMapping("/documents/{id}")
-    public ResponseEntity<byte[]> displayDocument(@PathVariable Long id) {
-        byte[] content = documentService.getDocumentContentById(id);
-        if (content == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getDocumentById(@PathVariable Long id) {
+        Document document = documentService.getDocumentById(id);
+        if (document == null) {
+            return ResponseEntity.ok().body(document);
         }
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDisposition(ContentDisposition.builder("inline")
-                .filename("document_" + id + ".pdf")
-                .build());
-
-        return ResponseEntity.ok().headers(headers).body(content);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.NOT_FOUND, "Couldn't find document"));
     }
 
 
-    @PostMapping("/documents/upload")
-    public ResponseEntity<String> uploadDocument(@RequestParam("file") MultipartFile file,
-                                                 @RequestParam("nomDocument") String nomDocument,
-                                                 @RequestParam("chapitreId") Long chapitreId) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateDocument(@PathVariable Long id,@RequestBody Document document) {
         try {
-            System.out.println("Nom du fichier : " + file.getOriginalFilename());
-            System.out.println("Nom du document : " + nomDocument);
-            System.out.println("Chapitre ID : " + chapitreId);
 
-            byte[] urlDocument = file.getBytes();
+            documentService.updateDocument(id, document);
 
-            Document savedDocument = documentService.saveDocument(nomDocument, urlDocument, chapitreId);
-
-            return ResponseEntity.ok("Document uploaded successfully. Document ID: " + savedDocument.getDocumentId());
+            return ResponseEntity.ok(new ResponseDto(HttpStatus.OK,"Document updated successfully"));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload document.");
+            return ResponseEntity.ok(new ResponseDto(HttpStatus.INTERNAL_SERVER_ERROR,"ERROR"));
+
         }
     }
-
-    @PutMapping("/documents/update/{id}")
-    public ResponseEntity<String> updateDocument(@PathVariable Long id,
-                                                 @RequestParam("nomDocument") String nomDocument,
-                                                 @RequestParam("file") MultipartFile file,
-                                                 @RequestParam("chapitreId") Long chapitreId) {
-        try {
-            byte[] urlDocument = file.getBytes();
-            Document updatedDocument = documentService.updateDocument(id, nomDocument, urlDocument, chapitreId);
-
-            return ResponseEntity.ok("Document updated successfully. Document ID: " + updatedDocument.getDocumentId());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update document.");
-        }
-    }
-
-    @DeleteMapping("/documents/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteDocument(@PathVariable Long id) {
         try {
             documentService.deleteDocument(id);

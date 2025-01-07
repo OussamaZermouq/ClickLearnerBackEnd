@@ -39,4 +39,13 @@ public class UserServiceImpl implements IUserService{
             userRepository.delete(userToDelete.get());
         }
     }
+
+    @Override
+    public Integer login(String email, String password) {
+        User user = userRepository.getUserByEmailAndPassword(email, password);
+        if (user!=null){
+            return user.getUserId();
+        }
+        return null;
+    }
 }

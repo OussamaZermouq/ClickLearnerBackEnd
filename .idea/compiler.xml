@@ -8,11 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
-        <module name="ms-examen" />
-        <module name="ms-users" />
+        <module name="ms-progression" />
         <module name="ms-devoir" />
         <module name="ClicklearnerGateway" />
         <module name="ms-resultat" />
+        <module name="ms-examen" />
+        <module name="ms-users" />
+        <module name="ms-cours" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,8 +22,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ClicklearnerGateway" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
+      <module name="ms-cours" options="-parameters" />
       <module name="ms-devoir" options="-parameters" />
       <module name="ms-examen" options="-parameters" />
+      <module name="ms-progression" options="-parameters" />
       <module name="ms-resultat" options="-parameters" />
       <module name="ms-users" options="-parameters" />
     </option>

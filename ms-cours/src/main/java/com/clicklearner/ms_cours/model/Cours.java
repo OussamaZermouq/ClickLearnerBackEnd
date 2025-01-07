@@ -12,18 +12,22 @@ import java.util.List;
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
 @Entity
 public class Cours {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long coursId;
-    private String titreCour;
-    private String profId;
+    private String titreCours;
+    @Column(length = 1000)
+    private String descriptionCours;
+    private int profId;
+    private DifficultyEnum difficulty;
+    private int estimatedDuration;
 
     @ManyToOne
     @JsonBackReference
     private Matier matier;
-
     @OneToMany(mappedBy = "cours", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Chapitre> chapitres;
-
+    private String coursImage;
 }

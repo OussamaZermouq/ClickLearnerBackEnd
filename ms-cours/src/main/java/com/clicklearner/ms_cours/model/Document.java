@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+
+//Can be either video photo or a pdf file
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
 @Entity
 public class Document {
@@ -12,10 +14,9 @@ public class Document {
 
     private Long documentId;
     private String nomDocument;
-    @Lob
-    private byte[] urlDocument;
+    private String urlDocument;
 
     @ManyToOne
     @JsonBackReference
-    private Chapitre chapitres;
+    private Chapitre chapitre;
 }

@@ -8,9 +8,8 @@ import java.util.List;
 public interface IDocumentService {
     public Document getDocumentById(Long documentId);
     List<Document> getAllDocuments();
-    Document saveDocument(String nomDocument, byte[] urlDocument, Long chapitreId);
-    byte[] getDocumentContentById(Long documentId);
-    Document updateDocument(Long documentId, String nomDocument, byte[] urlDocument, Long chapitreId);
+    void saveDocument(Document document);
+    void updateDocument(Long documentId, Document document);
     void deleteDocument(Long documentId);
 
 }

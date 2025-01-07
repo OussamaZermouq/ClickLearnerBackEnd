@@ -9,4 +9,5 @@ public interface IUserService {
     public void createUser(User user);
     public void updateUser(int userId, User user);
     public void deleteUser(int userId);
+    public Integer login(String email, String password);
 }

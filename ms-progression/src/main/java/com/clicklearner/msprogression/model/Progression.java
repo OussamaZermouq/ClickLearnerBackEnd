@@ -6,15 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-//@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
-//@Entity
+@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
+@Entity
 public class Progression {
 
-//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-//
-//    Long progressionId;
-//    Cours cours;
-//    Etudiant etudiant;
-//    int pourcentage;
-//
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long progressionId;
+    int coursId;
+    int etudiantId;
+    double pourcentage;
+
 }

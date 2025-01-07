@@ -16,17 +16,19 @@ public class Chapitre {
     private Long chapitreId;
     private String titreChapitre;
     private int numChapitre;
+    private String chapitreDescription;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String chapitreContent;
 
     @ManyToOne
     @JsonBackReference
     private Cours cours;
 
-    @OneToMany(mappedBy = "chapitres", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "chapitre", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Document> documents;
 
-    @OneToMany(mappedBy = "chapitres", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Video> videos;
 
 }

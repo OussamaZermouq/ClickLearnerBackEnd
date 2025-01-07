@@ -1,12 +1,17 @@
 package com.clicklearner.ms_cours.service.implementations;
 
+import com.clicklearner.ms_cours.dto.CoursDto;
+import com.clicklearner.ms_cours.dto.user.ProfDto;
+import com.clicklearner.ms_cours.dto.user.UserDto;
 import com.clicklearner.ms_cours.model.Cours;
 import com.clicklearner.ms_cours.model.Matier;
+import com.clicklearner.ms_cours.openfeign.UserServiceClient;
 import com.clicklearner.ms_cours.repository.CoursRepository;
 import com.clicklearner.ms_cours.repository.MatierRepository;
 import com.clicklearner.ms_cours.service.interfaces.ICoursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,15 +21,28 @@ public class CoursServiceImpt implements ICoursService {
 
     @Autowired
     private CoursRepository coursRepository;
-
     @Autowired
-    private MatierRepository matierRepository;
-
+    private UserServiceClient userServiceClient;
     @Override
-    public Cours getCourById(Long coursId) {
-        Optional<Cours> cours = coursRepository.findById(coursId);
-        if (cours.isPresent()){
-            return cours.get();
+    public CoursDto getCourById(Long coursId) {
+        Optional<Cours> coursOptional = coursRepository.findById(coursId);
+        if (coursOptional.isPresent()){
+            Cours cours = coursOptional.get();
+            Optional<ProfDto> profDto = userServiceClient.getUserById(cours.getProfId());
+            if (profDto.isPresent()){
+                CoursDto coursDto = CoursDto.builder().
+                        coursId(cours.getCoursId()).
+                        titreCours(cours.getTitreCours()).
+                        coursImage(cours.getCoursImage()).
+                        descriptionCours(cours.getDescriptionCours()).
+                        prof(profDto.get()).
+                        difficulty(cours.getDifficulty()).
+                        estimatedDuration(cours.getEstimatedDuration()).
+                        matier(cours.getMatier()).
+                        chapitres(cours.getChapitres()).
+                        build();
+                return coursDto;
+            }
         }
         return null;
     }
@@ -35,12 +53,11 @@ public class CoursServiceImpt implements ICoursService {
         return coursRepository.findAll();
     }
 
+
+
     @Override
-    public Cours addCour(Cours cours) {
-        if (matierRepository.existsById(cours.getMatier().getMatierId())) {
-            return coursRepository.save(cours);
-        }
-        throw new IllegalArgumentException("Le cours associé n'existe pas.");
+    public void addCour(Cours cours) {
+        coursRepository.save(cours);
     }
 
     @Override
