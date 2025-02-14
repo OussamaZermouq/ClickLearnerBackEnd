@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/resultat")
+@RequestMapping("ms-resultat/api/v1/resultat")
 public class ResultatController {
     @Autowired
     public ResultatService resultatService;

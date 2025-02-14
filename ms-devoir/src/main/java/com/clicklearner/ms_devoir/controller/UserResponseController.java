@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/userresponse")
+@RequestMapping("ms-devoir/api/v1/userresponse")
 public class UserResponseController {
     @Autowired
     private UserResponseServiceImpl userResponseService;

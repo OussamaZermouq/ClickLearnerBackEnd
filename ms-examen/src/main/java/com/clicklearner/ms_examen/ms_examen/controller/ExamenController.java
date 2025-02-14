@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/examen")
+@RequestMapping("ms-examen/api/v1/examen")
 public class ExamenController {
     @Autowired
     public ExamenServiceImpl examenService;

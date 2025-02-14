@@ -36,6 +36,23 @@ public class ClicklearnerGatewayApplication {
 						.path("/ms-progression/api/v1/**")
 						.uri("http://localhost:8089/ms-progression/api/v1/")
 				)
+				.route(p -> p
+						//progression
+						.path("/ms-devoir/api/v1/**")
+						.uri("http://localhost:8086/ms-devoir/api/v1/")
+				)
+
+				.route(p -> p
+						//progression
+						.path("/ms-resultat/api/v1/**")
+						.uri("http://localhost:8087/ms-resultat/api/v1/")
+				)
+				.route(p -> p
+						//progression
+						.path("/ms-examen/api/v1/**")
+						.uri("http://localhost:8085/ms-examen/api/v1/")
+				)
+
 				.build();
 	}
 

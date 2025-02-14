@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/devoir")
+@RequestMapping("ms-devoir/api/v1/devoir")
 public class DevoirController {
 
     @Autowired
